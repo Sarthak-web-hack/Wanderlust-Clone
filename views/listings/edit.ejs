@@ -1,0 +1,141 @@
+<!-- <% layout("/layouts/boilerplate")%>
+<div class="row">
+    <div class="col-8 offset-2">
+    <h3>Edit your listing</h3>
+    <div class="mb-3">
+    <form method="post" novalidate class="needs-validation" action="/listing/<%=listingid._id %>?_method=PUT">
+        <label for="title" class="form-label">Title</label>
+    <input name="listing[title]" class="form-control" value="<%= listingid.title %>" type="text" required>
+    </div>
+    <div class="mb-3">
+    <label for="Description"  class="form-label">Description</label>
+    <textarea name="listing[description]" class="form-control" required><%= listingid.description %></textarea>
+    </div>
+    <div class="mb-3">
+    <label for="image" class="form-label">Image link</label>
+    <input name="listing[image.url]" class="form-control" value="<%= listingid.image.url %>" type="text" required>
+    </div>
+    <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input name="listing[price]" class="form-control" value="<%= listingid.price %>" type="number" required>
+    </div>
+    <div class="mb-3">
+    <label for="country" class="form-label">Country</label>
+    <input name="listing[country]" class="form-control" value="<%= listingid.country %>" type="text" required>
+    </div>
+    <div class="mb-3">
+    <label for="location" class="form-label">Location</label>
+    <input name="listing[location]" class="form-control" value="<%= listingid.location %>" required>
+    </div>
+    <div class="mb-3">
+
+   <center> <button class="add_btn" type="submit">Edit</button> </center>
+    </div>
+</form>
+</div>
+</div> -->
+<% layout("/layouts/boilerplate") %>
+
+<div class="row">
+  <div class="col-8 offset-2">
+    <h3 class="mb-4">Edit your listing</h3>
+
+    <!-- Bootstrap validation needs .needs-validation and novalidate -->
+    <form method="post"
+          action="/listing/<%= listingid._id %>?_method=PUT"
+          class="needs-validation"
+          novalidate
+          enctype="multipart/form-data">
+
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input id="title"
+               name="listing[title]"
+               type="text"
+               class="form-control"
+               value="<%= listingid.title %>"
+               required>
+        <div class="invalid-feedback">Please enter a title.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea id="description"
+                  name="listing[description]"
+                  class="form-control"
+                  required><%= listingid.description %></textarea>
+        <div class="invalid-feedback">Please enter a description.</div>
+      </div>
+      Original Listing image
+        <div class="mb-3" >
+          <img src="<%= resizedImage %>"/>
+        </div>
+          
+      <div class="mb-3">
+        <label for="image" class="form-label"> Upload new Image </label>
+        <input id="image"
+               name="listing[image]"
+               type="file"
+               class="form-control"
+               
+               required>
+        <div class="invalid-feedback">Please provide an image URL.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input id="price"
+               name="listing[price]"
+               type="number"
+               class="form-control"
+               value="<%= listingid.price %>"
+               required>
+        <div class="invalid-feedback">Please enter a price.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="country" class="form-label">Country</label>
+        <input id="country"
+               name="listing[country]"
+               type="text"
+               class="form-control"
+               value="<%= listingid.country %>"
+               required>
+        <div class="invalid-feedback">Please enter a country.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input id="location"
+               name="listing[location]"
+               type="text"
+               class="form-control"
+               value="<%= listingid.location %>"
+               required>
+        <div class="invalid-feedback">Please enter a location.</div>
+      </div>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-primary" type="submit">Edit</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<!-- <script>
+/* Bootstrap 5 client-side validation (from official docs) */
+(() => {
+  'use strict'
+  const forms = document.querySelectorAll('.needs-validation')
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script> -->
